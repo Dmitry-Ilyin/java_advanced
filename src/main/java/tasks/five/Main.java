@@ -21,7 +21,7 @@ public class Main {
                     .orElseThrow(Exception::new)
                     .getKey();
 
-            System.out.println(list);
+            System.out.println("Статистика");
             System.out.println(map);
             System.out.println("Слово которое встречается максимальное кол-во раз : " + maxCountKey + "\n" +
                     "В файле данных слов : " + map.get(maxCountKey));
