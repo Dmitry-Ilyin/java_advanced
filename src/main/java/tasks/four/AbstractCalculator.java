@@ -11,7 +11,7 @@ public abstract class AbstractCalculator implements Calculator {
     protected Double result = null;
     protected static String MSG = "Операция еще не выполнялась";
 
-    public void doCalculations(Double numberOne, Double numberTwo, Operation operation) {
+    public Double doCalculations(Double numberOne, Double numberTwo, Operation operation) {
         logger.log(Level.INFO, "Выполняем вычисления {0} {1} {2}", new Object[]{numberOne, operation.getOperation(), numberTwo});
         double result;
         switch (operation.getOperation()) {
@@ -21,11 +21,12 @@ public abstract class AbstractCalculator implements Calculator {
             case "/" -> {
                 result = numberOne / numberTwo;
                 if (numberTwo == 0)
-                    throw new ArithmeticException("Деление на ноль запрешено!");
+                    throw new ArithmeticException("Деление на ноль запрещено!");
             }
             default -> throw new IllegalArgumentException("Ошибка! Вы ввели некорректную операцию");
         }
         this.result = result;
+        return result;
     }
 
     protected Double getNumberOne() {
