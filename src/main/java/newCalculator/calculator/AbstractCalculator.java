@@ -14,20 +14,25 @@ public abstract class AbstractCalculator implements Calculator {
     public Double doCalculations(Double numberOne, Double numberTwo, Operation operation) {
         logger.log(Level.INFO, "Выполняем вычисления {0} {1} {2}", new Object[]{numberOne, operation.getOperation(), numberTwo});
         Double result = null;
-        switch (operation.getOperation()) {
-            case "+" -> result = numberOne + numberTwo;
-            case "-" -> result = numberOne - numberTwo;
-            case "*" -> result = numberOne * numberTwo;
-            case "/" -> {
-                result = numberOne / numberTwo;
-                if (numberTwo == 0)
-                    throw new ArithmeticException("Деление на ноль запрещено!");
+        try {
+            switch (operation.getOperation()) {
+                case "+" -> result = numberOne + numberTwo;
+                case "-" -> result = numberOne - numberTwo;
+                case "*" -> result = numberOne * numberTwo;
+                case "/" -> {
+                    result = numberOne / numberTwo;
+                    if (numberTwo == 0)
+                        throw new ArithmeticException();
+                }
             }
+            this.numberOne = numberOne;
+            this.numberTwo = numberTwo;
+            this.operation = operation;
+            this.result = result;
+        } catch (ArithmeticException e) {
+            System.out.println("Деление на ноль запрещено");
+            this.result = null;
         }
-        this.numberOne = numberOne;
-        this.numberTwo = numberTwo;
-        this.operation = operation;
-        this.result = result;
         return result;
     }
 
@@ -49,4 +54,7 @@ public abstract class AbstractCalculator implements Calculator {
         return operation;
     }
 
+    public Double getResult() {
+        return result;
+    }
 }

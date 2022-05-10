@@ -13,10 +13,13 @@ public class Main {
     public static void main(String[] args) {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             MyCalculator myCalculator = new MyCalculator();
-            Double numberOne = CalculatorInputData.inputNumber(reader, InputNumber.FIRST);
-            Double numberTwo = CalculatorInputData.inputNumber(reader, InputNumber.SECOND);
-            Operation operation = CalculatorInputData.inputSign(reader);
-            myCalculator.doCalculations(numberOne, numberTwo, operation);
+            while (myCalculator.getResult() == null) {
+                Double numberOne = CalculatorInputData.inputNumber(reader, InputNumber.FIRST);
+                Double numberTwo = CalculatorInputData.inputNumber(reader, InputNumber.SECOND);
+                Operation operation = CalculatorInputData.inputSign(reader);
+                myCalculator.doCalculations(numberOne, numberTwo, operation);
+                myCalculator.printResult();
+            }
             myCalculator.printResult();
         } catch (IOException e) {
             e.printStackTrace();
