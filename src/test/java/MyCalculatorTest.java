@@ -21,17 +21,17 @@ public class MyCalculatorTest {
     @Test
     void verificationsOfCalculations() {
         Assertions.assertAll(
-                () -> assertEquals(numberOne + numberTwo, myCaluclator.doCalculations(numberOne, numberTwo, Operation.ADD), "Некорректная операция сложения"),
-                () -> assertEquals(numberOne * numberTwo, myCaluclator.doCalculations(numberOne, numberTwo, Operation.MULTIPLY), "Некорректная операция умножения"),
-                () -> assertEquals(numberOne - numberTwo, myCaluclator.doCalculations(numberOne, numberTwo, Operation.SUBTRACT), "Некорректная операция вычитания"),
-                () -> assertEquals(numberOne / numberTwo, myCaluclator.doCalculations(numberOne, numberTwo, Operation.DIVIDE), "Некорректная операция деления")
+                () -> assertEquals(numberOne + numberTwo, myCaluclator.doCalculations(numberOne, numberTwo, "+"), "Некорректная операция сложения"),
+                () -> assertEquals(numberOne * numberTwo, myCaluclator.doCalculations(numberOne, numberTwo, "*"), "Некорректная операция умножения"),
+                () -> assertEquals(numberOne - numberTwo, myCaluclator.doCalculations(numberOne, numberTwo, "-"), "Некорректная операция вычитания"),
+                () -> assertEquals(numberOne / numberTwo, myCaluclator.doCalculations(numberOne, numberTwo, "/"), "Некорректная операция деления")
         );
     }
 
     @Test
     void checkingForExceptions() {
         Assertions.assertAll(
-                () -> assertThrows(ArithmeticException.class, () -> myCaluclator.doCalculations(numberOne, 0.0, Operation.DIVIDE))
+                () -> assertThrows(ArithmeticException.class, () -> myCaluclator.doCalculations(numberOne, 0.0, "/"))
         );
     }
 }
