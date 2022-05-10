@@ -2,7 +2,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import tasks.four.MyCaluclator;
-import tasks.four.Operation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -31,7 +30,8 @@ public class MyCalculatorTest {
     @Test
     void checkingForExceptions() {
         Assertions.assertAll(
-                () -> assertThrows(ArithmeticException.class, () -> myCaluclator.doCalculations(numberOne, 0.0, "/"))
+                () -> assertThrows(ArithmeticException.class, () -> myCaluclator.doCalculations(numberOne, 0.0, "/")),
+                () -> assertThrows(IllegalArgumentException.class, () -> myCaluclator.doCalculations(numberOne, numberTwo, "."))
         );
     }
 }
