@@ -18,7 +18,6 @@ public class Main {
                 Double numberTwo = CalculatorInputData.inputNumber(reader, InputNumber.SECOND);
                 Operation operation = CalculatorInputData.inputSign(reader);
                 myCalculator.doCalculations(numberOne, numberTwo, operation);
-                myCalculator.printResult();
             }
             myCalculator.printResult();
         } catch (IOException e) {
