@@ -33,13 +33,13 @@ public abstract class AbstractCalculator implements Calculator {
         return result;
     }
 
-    protected Double getNumberOne() {
+    public Double getNumberOne() {
         if (numberOne == null)
             System.out.println(MSG);
         return numberOne;
     }
 
-    protected Double getNumberTwo() {
+    public Double getNumberTwo() {
         if (numberTwo == null)
             System.out.println(MSG);
         return numberTwo;
