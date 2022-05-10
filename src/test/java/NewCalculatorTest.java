@@ -14,7 +14,7 @@ public class NewCalculatorTest {
 
     @BeforeAll
     static void setUp() {
-        myCalculator = MyCalculator.getInstance();
+        myCalculator = new MyCalculator();
     }
 
     @Test
