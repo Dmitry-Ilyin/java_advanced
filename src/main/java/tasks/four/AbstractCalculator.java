@@ -1,5 +1,6 @@
 package tasks.four;
 
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,7 +12,10 @@ public abstract class AbstractCalculator implements Calculator {
     protected Double result = null;
     protected static String MSG = "Операция еще не выполнялась";
 
-    public Double doCalculations(Double numberOne, Double numberTwo, Operation operation) {
+    public Double doCalculations(Double numberOne, Double numberTwo, String symbol) throws IllegalArgumentException {
+        Operation[] arrayOperation = Operation.values();
+        operation = Arrays.stream(arrayOperation).filter(i -> i.getOperation().equals(symbol)).findFirst().orElseThrow(IllegalArgumentException::new);
+
         logger.log(Level.INFO, "Выполняем вычисления {0} {1} {2}", new Object[]{numberOne, operation.getOperation(), numberTwo});
         double result;
         switch (operation.getOperation()) {
