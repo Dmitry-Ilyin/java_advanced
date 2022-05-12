@@ -17,7 +17,13 @@ public class Main {
                 Double numberOne = CalculatorInputData.inputNumber(reader, InputNumber.FIRST);
                 Double numberTwo = CalculatorInputData.inputNumber(reader, InputNumber.SECOND);
                 Operation operation = CalculatorInputData.inputSign(reader);
-                myCalculator.doCalculations(numberOne, numberTwo, operation);
+                try {
+                    myCalculator.doCalculations(numberOne, numberTwo, operation);
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Ошибка! Вы ввели некорректный знак");
+                } catch (ArithmeticException e) {
+                    System.out.println("Деление на ноль запрещено");
+                }
             }
             myCalculator.printResult();
         } catch (IOException e) {

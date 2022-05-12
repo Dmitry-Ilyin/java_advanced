@@ -11,28 +11,24 @@ public abstract class AbstractCalculator implements Calculator {
     protected Double result = null;
     protected static String MSG = "Операция еще не выполнялась. Выполните операцию";
 
-    public Double doCalculations(Double numberOne, Double numberTwo, Operation operation) {
+    public Double doCalculations(Double numberOne, Double numberTwo, Operation operation) throws IllegalArgumentException, ArithmeticException {
         logger.log(Level.INFO, "Выполняем вычисления {0} {1} {2}", new Object[]{numberOne, operation.getOperation(), numberTwo});
         Double result = null;
-        try {
-            switch (operation.getOperation()) {
-                case "+" -> result = numberOne + numberTwo;
-                case "-" -> result = numberOne - numberTwo;
-                case "*" -> result = numberOne * numberTwo;
-                case "/" -> {
-                    result = numberOne / numberTwo;
-                    if (numberTwo == 0)
-                        throw new ArithmeticException();
-                }
+        switch (operation.getOperation()) {
+            case "+" -> result = numberOne + numberTwo;
+            case "-" -> result = numberOne - numberTwo;
+            case "*" -> result = numberOne * numberTwo;
+            case "/" -> {
+                result = numberOne / numberTwo;
+                if (numberTwo == 0)
+                    throw new ArithmeticException();
             }
-            this.numberOne = numberOne;
-            this.numberTwo = numberTwo;
-            this.operation = operation;
-            this.result = result;
-        } catch (ArithmeticException e) {
-            System.out.println("Деление на ноль запрещено");
-            this.result = null;
+            default -> throw new IllegalArgumentException();
         }
+        this.numberOne = numberOne;
+        this.numberTwo = numberTwo;
+        this.operation = operation;
+        this.result = result;
         return result;
     }
 
