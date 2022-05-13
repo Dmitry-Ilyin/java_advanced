@@ -13,7 +13,7 @@ public class Main {
         List<String> list = new ArrayList<>();
         Map<String, Integer> map = new TreeMap<>();
         try (Stream<String> stream = Files.lines(Paths.get("src/main/resources/text.txt"), StandardCharsets.UTF_8)) {
-            stream.forEach(line -> list.addAll(Arrays.asList(line.toLowerCase(Locale.ROOT).split(" "))));
+            stream.forEach(line -> list.addAll(Arrays.asList(line.trim().toLowerCase(Locale.ROOT).split(" "))));
             list.forEach(s -> map.merge(s, 1, Integer::sum));
             String maxCountKey = map.entrySet()
                     .stream()
