@@ -19,6 +19,7 @@ public class CalculatorInputData {
                 number = CalcluatorDataParser.parseDouble(reader.readLine());
             } catch (IOException e) {
                 e.printStackTrace();
+                System.exit(-1);
             }
         }
         return number;
@@ -32,6 +33,7 @@ public class CalculatorInputData {
                 operation = CalcluatorDataParser.parseSign(reader.readLine());
             } catch (IOException e) {
                 e.printStackTrace();
+                System.exit(-1);
             }
         }
         return operation;
